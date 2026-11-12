@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard SPA - Monitoreo Cloud</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <aside class="sidebar" aria-label="Navegación principal">
+        <div class="sidebar-logo">
+            <span class="logo-icon">☁️</span>
+            <h2>TecnoBragado</h2>
+        </div>
+        <nav class="sidebar-menu">
+            <ul>
+                <li class="active"><a href="#" aria-current="page">📊 Dashboard</a></li>
+                <li><a href="#">🖥️ Servidores</a></li>
+                <li><a href="#">⚙️ Configuración</a></li>
+                <li><a href="#">📈 Reportes</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="profile-icon.jpg" alt="Perfil del usuario" class="profile-icon">
+                <span>Ingeniero DevOps</span>
+            </div>
+            <button class="theme-toggle" aria-label="Cambiar modo oscuro">🌙 / ☀️</button>
+        </div>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="topbar">
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+            <div class="breadcrumbs">
+                <span>Home</span> / <span class="current">Dashboard</span>
+            </div>
+            <div class="topbar-actions">
+                <input type="search" placeholder="Buscar instancia..." class="search-input">
+                <button class="notifications" aria-label="Notificaciones">🔔</button>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <header class="content-header">
+                <h1>Servidores</h1>
+                <p>Monitoreo de instancias en tiempo real</p><button class="btn-icon open-drawer">+ Nueva Instancia</button>
+                
+            </header>
+
+            <!-- Grid de Métricas (Bento Layout) -->
+            <section class="bento-grid">
+                <!-- Tarjetas de estado -->
+                <article class="metric-card">
+                    <h3>Servidores Activos</h3>
+                    <p class="metric-value">42 / 48</p>
+                    <span class="status healthy">Óptimo</span>
+                </article>
+                <article class="metric-card">
+                    <h3>Uso de CPU (Promedio)</h3>
+                    <p class="metric-value">83 %</p>
+                    <span class="status warning">Atención</span>
+                </article>
+                <article class="metric-card">
+                    <h3>Uso de Memoria</h3>
+                    <p class="metric-value">71 %</p>
+                    <span class="status normal">Estable</span>
+                </article>
+                <article class="metric-card alert">
+                    <h3>Alertas Críticas</h3>
+                    <p class="metric-value">3</p>
+                    <span class="status danger">Requiere Acción</span>
+                </article>
+
+                <!-- Gráficas (Espacios simulados) -->
+                <article class="chart-card line-chart">
+                    <h3>Uso de Red (Últimas 24h)</h3>
+                    <div class="chart-placeholder">
+                        <img src="Grafico-de-lineas.png" alt="Uso de red" class="line-chart-graphic">
+                    </div>
+                </article>
+                <article class="chart-card bar-chart">
+                    <h3>Carga por Región</h3>
+                    <div class="chart-placeholder">
+                        <img src="Graficos.jpg" alt="Carga por región" class="line-chart-graphic-state">
+                    </div>
+                </article>
+
+                <!-- Tabla de Registros -->
+                <article class="table-card">
+                    <h3>Registro de Servidores</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Instancia</th>
+                                    <th>Región</th>
+                                    <th>Estado</th>
+                                    <th>CPU</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DB-Principal</td>
+                                    <td>US-East</td>
+                                    <td><span class="badge healthy">Activo</span></td>
+                                    <td>45%</td>
+                                    <td><button class="btn-icon open-drawer" aria-label="Configurar DB-Principal">☰</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Cache-Node-1</td>
+                                    <td>US-West</td>
+                                    <td><span class="badge danger">Caído</span></td>
+                                    <td>--</td>
+                                    <td><button class="btn-icon open-drawer" aria-label="Configurar Cache-Node-1">☰</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <!-- Drawer (Panel Lateral Deslizante) -->
+    <aside id="config-drawer" class="drawer" aria-hidden="true">
+        <header class="drawer-header">
+            <h2>Configuración de DB</h2>
+            <button class="close-drawer" aria-label="Cerrar panel">✕</button>
+        </header>
+        <form class="drawer-content">
+            <div class="form-group">
+                <label for="instance-name">Nombre de instancia</label>
+                <input type="text" id="instance-name" value="DB-Principal" readonly>
+            </div>
+            <div class="form-group">
+                <label for="instance-region">Región</label>
+                <select id="instance-region">
+                    <option value="us-east">US-East (G. Ambino)</option>
+                    <option value="us-west">US-West (Batamuerte)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maintenance-date">Fecha de mantenimiento</label>
+                <input type="date" id="maintenance-date">
+            </div>
+            <div class="form-group toggle-group">
+                <label for="auto-scaling">escalado dinámico</label>
+                <!-- Switch binario CSS -->
+                <label class="switch">
+                    <input type="checkbox" id="auto-scaling" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </form>
+        <footer class="drawer-footer">
+            <button class="btn-danger open-modal" type="button">Reiniciar Instancia</button><br><br>
+            <div class="footer-actions">
+                <button class="btn-primary" type="submit">Guardar Cambios</button>
+            </div>
+        </footer>
+    </aside>
+
+    <!-- Ventana Modal de Confirmación (Nativa) -->
+    <dialog id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="warning-icon">⚠️</span>
+                <h2>¿ESTÁS SEGURO?</h2>
+            </div>
+            <p>Esta acción reiniciará la instancia <strong>DB-Principal</strong> y cortará las conexiones activas. ¿Deseas continuar?</p>
+            <div class="modal-actions">
+                <button class="btn-secondary cancel-modal" type="button">Cancelar</button>
+                <button class="btn-danger confirm-action" type="button">Confirmar</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div class="overlay" aria-hidden="true"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
