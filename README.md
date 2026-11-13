@@ -43,7 +43,7 @@ Dado que el proyecto es puramente frontend sin dependencias externas, no se requ
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+   git clone https://github.com/carmendgekja-prog/Dashboard-SPA
    ```
 2. Abre la carpeta del proyecto.
 3. Ejecuta el archivo `index.html` en tu navegador web preferido.
